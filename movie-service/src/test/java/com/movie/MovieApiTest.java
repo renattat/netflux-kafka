@@ -1,29 +1,26 @@
-package com.renat.movie;
+package com.movie;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.stream.binder.test.EnableTestBinder;
-import org.springframework.cloud.stream.binder.test.OutputDestination;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.client.RestTestClient;
 
-
-@EnableTestBinder
 @AutoConfigureRestTestClient
 @SpringBootTest(properties = "app.import-movies=false")
-public class MovieEventBinderTest {
+@Sql(value = "classpath:test-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+public class MovieApiTest {
 
     @Autowired
     private RestTestClient testClient;
 
-    @Autowired
-    private OutputDestination outputDestination;
+    @Test
+    public void movieDetails() {
+    }
 
     @Test
-    public void movieAddedEvent() {
-
+    public void movieNotFound() {
     }
 
 }

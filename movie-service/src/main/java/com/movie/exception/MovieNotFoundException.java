@@ -1,4 +1,4 @@
-package com.renat.movie.exception;
+package com.movie.exception;
 
 public class MovieNotFoundException extends RuntimeException {
 

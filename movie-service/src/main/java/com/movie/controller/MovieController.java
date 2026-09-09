@@ -1,7 +1,7 @@
-package com.renat.movie.controller;
+package com.movie.controller;
 
-import com.renat.movie.dto.MovieDetails;
-import com.renat.movie.service.MovieService;
+import com.movie.dto.MovieDetails;
+import com.movie.service.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

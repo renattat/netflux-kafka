@@ -1,6 +1,6 @@
 package com.renat.recommendation.service;
 
-import com.renat.netflux.events.MovieAddedEvent;
+import com.netflux.events.MovieAddedEvent;
 import org.springframework.stereotype.Service;
 
 @Service

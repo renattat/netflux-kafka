@@ -1,6 +1,6 @@
-package com.renat.movie.controller.advice;
+package com.movie.controller.advice;
 
-import com.renat.movie.exception.MovieNotFoundException;
+import com.movie.exception.MovieNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ControllerAdvice;

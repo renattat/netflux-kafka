@@ -1,4 +1,4 @@
-package com.renat.movie.entity;
+package com.movie.entity;
 
 import jakarta.persistence.*;
 

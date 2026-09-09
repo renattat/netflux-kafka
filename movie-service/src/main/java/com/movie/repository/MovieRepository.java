@@ -1,6 +1,6 @@
-package com.renat.movie.repository;
+package com.movie.repository;
 
-import com.renat.movie.entity.Movie;
+import com.movie.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

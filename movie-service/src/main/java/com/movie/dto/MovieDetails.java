@@ -1,4 +1,4 @@
-package com.renat.movie.dto;
+package com.movie.dto;
 
 import java.util.List;
 

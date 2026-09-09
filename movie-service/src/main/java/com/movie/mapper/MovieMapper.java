@@ -1,8 +1,8 @@
-package com.renat.movie.mapper;
+package com.movie.mapper;
 
-import com.renat.movie.dto.MovieDetails;
-import com.renat.movie.entity.Movie;
-import com.renat.netflux.events.MovieAddedEvent;
+import com.movie.dto.MovieDetails;
+import com.movie.entity.Movie;
+import com.netflux.events.MovieAddedEvent;
 
 import java.time.Instant;
 

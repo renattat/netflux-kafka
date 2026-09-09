@@ -1,7 +1,7 @@
 package com.renat.recommendation.mapper;
 
-import com.renat.netflux.events.CustomerGenreUpdatedEvent;
-import com.renat.netflux.events.MovieAddedEvent;
+import com.netflux.events.CustomerGenreUpdatedEvent;
+import com.netflux.events.MovieAddedEvent;
 import com.renat.recommendation.dto.MovieSummary;
 import com.renat.recommendation.entity.CustomerGenre;
 import com.renat.recommendation.entity.Movie;

@@ -2,7 +2,7 @@ package com.renat.customer.mapper;
 
 import com.renat.customer.dto.CustomerDetails;
 import com.renat.customer.entity.Customer;
-import com.renat.netflux.events.CustomerGenreUpdatedEvent;
+import com.netflux.events.CustomerGenreUpdatedEvent;
 
 import java.time.Instant;
 

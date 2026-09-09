@@ -1,6 +1,6 @@
 package com.renat.recommendation.service;
 
-import com.renat.netflux.events.CustomerGenreUpdatedEvent;
+import com.netflux.events.CustomerGenreUpdatedEvent;
 import org.springframework.stereotype.Service;
 
 @Service

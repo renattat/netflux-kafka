@@ -1,4 +1,4 @@
-package com.renat.movie.service;
+package com.movie.service;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

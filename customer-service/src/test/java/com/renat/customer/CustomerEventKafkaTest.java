@@ -1,6 +1,6 @@
 package com.renat.customer;
 
-import com.renat.netflux.events.CustomerGenreUpdatedEvent;
+import com.netflux.events.CustomerGenreUpdatedEvent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;

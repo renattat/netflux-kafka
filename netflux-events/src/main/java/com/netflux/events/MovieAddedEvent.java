@@ -1,4 +1,4 @@
-package com.renat.netflux.events;
+package com.netflux.events;
 
 import java.time.Instant;
 import java.util.List;

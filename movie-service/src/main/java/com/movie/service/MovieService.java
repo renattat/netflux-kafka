@@ -1,7 +1,7 @@
-package com.renat.movie.service;
+package com.movie.service;
 
 
-import com.renat.movie.dto.MovieDetails;
+import com.movie.dto.MovieDetails;
 import org.springframework.stereotype.Service;
 
 @Service

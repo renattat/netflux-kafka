@@ -1,6 +1,6 @@
 package com.renat.customer.messaging;
 
-import com.renat.netflux.events.CustomerGenreUpdatedEvent;
+import com.netflux.events.CustomerGenreUpdatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.function.StreamBridge;

@@ -1,18 +1,24 @@
 package com.renat.customer;
 
 import com.netflux.events.CustomerGenreUpdatedEvent;
+import com.renat.customer.dto.GenreUpdateRequest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.test.web.servlet.client.RestTestClient;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 @AutoConfigureRestTestClient
@@ -37,19 +43,33 @@ public class CustomerEventKafkaTest {
     private BlockingQueue<Message<CustomerGenreUpdatedEvent>> queue;
 
     @Test
-    public void genreUpdatedEvent() {
+    public void genreUpdatedEvent() throws InterruptedException {
+        // send the genre update request
+        var request = new GenreUpdateRequest("Thriller");
+        this.testClient.patch()
+                .uri("/api/customers/2/genre")
+                .body(request)
+                .exchange().expectStatus().isNoContent(); // 204
+
+        // validate the event
+        var message = this.queue.poll(5, TimeUnit.SECONDS);
+        Assertions.assertNotNull(message);
+        var event = message.getPayload();
+        Assertions.assertEquals(2, message.getHeaders().get(KafkaHeaders.RECEIVED_KEY, Integer.class));
+        Assertions.assertEquals(2, event.customerId());
+        Assertions.assertEquals("Thriller", event.favoriteGenre());
     }
 
     @TestConfiguration
-    static class TestConsumerConfiguration{
+    static class TestConsumerConfiguration {
 
         @Bean
-        public BlockingQueue<Message<CustomerGenreUpdatedEvent>> queue(){
+        public BlockingQueue<Message<CustomerGenreUpdatedEvent>> queue() {
             return new LinkedBlockingQueue<>();
         }
 
         @Bean
-        Consumer<Message<CustomerGenreUpdatedEvent>> testConsumer(BlockingQueue<Message<CustomerGenreUpdatedEvent>> queue){
+        Consumer<Message<CustomerGenreUpdatedEvent>> testConsumer(BlockingQueue<Message<CustomerGenreUpdatedEvent>> queue) {
             return queue::add;
         }
 

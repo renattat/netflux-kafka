@@ -1,6 +1,8 @@
 package com.renat.recommendation.controller;
 
 import com.renat.recommendation.dto.MovieRecommendations;
+import com.renat.recommendation.service.RecommendationService;
+import com.renat.recommendation.service.RecommendationStreamService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -12,14 +14,27 @@ import java.util.List;
 @RequestMapping("/api/recommendations")
 public class RecommendationController {
 
+    private final RecommendationService recommendationService;
+    private final RecommendationStreamService recommendationStreamService;
+
+    public RecommendationController(RecommendationService recommendationService, RecommendationStreamService recommendationStreamService) {
+        this.recommendationService = recommendationService;
+        this.recommendationStreamService = recommendationStreamService;
+    }
+
+
     @GetMapping("/{customerId}")
-    public List<MovieRecommendations> getRecommendations(@PathVariable Integer customerId){
-        return Collections.emptyList();
+    public List<MovieRecommendations> getRecommendations(@PathVariable Integer customerId) {
+        return List.of(
+                MovieRecommendations.newlyAdded(this.recommendationService.findNewlyAdded()),
+                MovieRecommendations.personalized(customerId, this.recommendationService.findPersonalized(customerId))
+        );
     }
 
     @GetMapping(value = "/{customerId}/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<MovieRecommendations> getRecommendationStream(@PathVariable Integer customerId){
-        return Flux.empty();
+    public Flux<MovieRecommendations> getRecommendationStream(@PathVariable Integer customerId) {
+
+        return this.recommendationStreamService.streamRecommendations(customerId);
     }
 
 }

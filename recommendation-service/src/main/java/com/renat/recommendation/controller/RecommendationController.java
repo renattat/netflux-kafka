@@ -24,7 +24,7 @@ public class RecommendationController {
 
 
     @GetMapping("/{customerId}")
-    public List<MovieRecommendations> getRecommendations(@PathVariable Integer customerId) {
+    public List<MovieRecommendations> getRecommendations(@PathVariable Integer customerId){
         return List.of(
                 MovieRecommendations.newlyAdded(this.recommendationService.findNewlyAdded()),
                 MovieRecommendations.personalized(customerId, this.recommendationService.findPersonalized(customerId))
